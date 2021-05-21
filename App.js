@@ -1,24 +1,32 @@
-/**
- * Test ReFacil superpagos
- * Jorge Luis Sanchez Ocampo
- *
- */
-
+/* eslint-disable react-native/no-inline-styles */
+/* eslint-disable prettier/prettier */
 import React from 'react';
 import {
   SafeAreaView,
   ScrollView,
-  StatusBar,
   StyleSheet,
   Text,
-  useColorScheme,
   View,
-  Dimensions,
+  Button,
 } from 'react-native';
+import PushNotification from 'react-native-push-notification';
 
+PushNotification.channelExists('refacil-channel-id', function (exists) {
+  console.log(exists); // true/false
+});
 // const hp = () => Dimensions.get('window').height;
 
 const App = () => {
+  const pushNoti = () => {
+    PushNotification.localNotification({
+      channelId: 'refacil-channel-id',
+      title: 'My Notification Title', // (optional)
+      message: 'My Notification Message', // (required)
+      showWhen: true,
+      vibrate: true,
+    });
+  };
+
   return (
     <SafeAreaView
       style={{
@@ -37,6 +45,12 @@ const App = () => {
             Hola george!
           </Text>
         </View>
+        <Button
+          onPress={pushNoti}
+          title="push notification"
+          color="#841584"
+          accessibilityLabel="Learn more about this purple button"
+        />
       </ScrollView>
     </SafeAreaView>
   );
