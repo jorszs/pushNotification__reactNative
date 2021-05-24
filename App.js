@@ -11,19 +11,29 @@ import {
 } from 'react-native';
 import PushNotification from 'react-native-push-notification';
 
-PushNotification.channelExists('refacil-channel-id', function (exists) {
+PushNotification.channelExists('reFacil-channel-id', function (exists) {
   console.log(exists); // true/false
 });
+
+// const permissions = {
+//   alert: true
+// }
+// PushNotification.checkPermissions(function (sound) {
+//   console.log(sound);
+// });
 // const hp = () => Dimensions.get('window').height;
 
 const App = () => {
   const pushNoti = () => {
     PushNotification.localNotification({
-      channelId: 'refacil-channel-id',
-      title: 'My Notification Title', // (optional)
-      message: 'My Notification Message', // (required)
-      showWhen: true,
+      channelId: 'reFacil-channel-id',
+      title: 'Hola George', // (optional)
+      message: 'Por qué no has vuelto te extrañamos!   :(', // (required)
+      color: '#FFB03D',
+      // showWhen: true,
       vibrate: true,
+      playSound: false, // (optional) default: true
+      soundName: 'default',
     });
   };
 
@@ -62,6 +72,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     alignContent: 'center',
     justifyContent: 'center',
+    marginBottom: 300,
   },
 });
 
